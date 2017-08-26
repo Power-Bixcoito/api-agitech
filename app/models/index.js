@@ -1,14 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
-import config from '../../config';
+import config from './../../config';
 let db = {};
 
 var sequelize = new Sequelize(config.db, {
   dialect: 'postgres'
 });
-
-console.log("DB: ",config.db)
 
 fs.readdirSync(__dirname).filter(function (file) {
   return (file.indexOf('.') !== 0) && (file !== 'index.js');
@@ -27,7 +25,7 @@ fs.readdirSync(__dirname).filter(function (file) {
 // db.Sequelize = Sequelize;
 
 sequelize.sync({
-  force: true
+  force: false
 })
 
 export default db;
