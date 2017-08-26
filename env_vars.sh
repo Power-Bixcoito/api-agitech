@@ -1,0 +1,5 @@
+export PG_USER=""
+export PG_PWD=""
+export PG_HOSTNAME=""
+export PG_PORT=""
+export PG_DB=""
