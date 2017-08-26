@@ -1,15 +1,23 @@
 export default (sequelize, DataType) => {
-  const Responsible = sequelize.define('responsible', {
-    name: {
-      type: DataType.STRING
-    },
-    email: {
-      type: DataType.STRING,
-      validate: {
-        isEmail: true
-      }
-    }
-  })
+    const Card = sequelize.import('./card');
+    const Responsible = sequelize.define('responsible', {
+        name: {
+            type: DataType.STRING
+        },
+        password: {
+            type: DataType.STRING
+        },
+        email: {
+            type: DataType.STRING,
+            validate: {
+                isEmail: true
+            }
+        }
+    })
 
-  return Responsible;
+    Responsible.belongsTo(Card, {
+        as: 'card'
+    }); // Add Card to Responsible using cardId column
+
+    return Responsible;
 }
