@@ -8,6 +8,7 @@ import task from './app/routes/task';
 import teen from './app/routes/teen';
 import card from './app/routes/card';
 import responsible from './app/routes/responsible';
+import auth from './app/routes/auth';
 
 
 const app = express();
@@ -25,5 +26,6 @@ app.route(responsible(app))
 app.route(task(app))
 app.route(teen(app))
 app.route(card(app))
+app.route(auth(app))
 
 export default app;
