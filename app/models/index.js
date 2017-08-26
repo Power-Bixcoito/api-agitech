@@ -24,6 +24,6 @@ fs.readdirSync(__dirname).filter(function (file) {
 // db.sequelize = sequelize;
 // db.Sequelize = Sequelize;
 
-sequelize.sync({ force: false })
+sequelize.sync({ force: true })
 
 export default db;
