@@ -9,7 +9,7 @@ var config = {
       name: 'api-agitech'
     },
     port: process.env.PORT || 3000,
-    db: process.env.HEROKU_POSTGRESQL_BRONZE_URL
+    db: 'postgres://postgres:postgres@localhost/api-agitech-development'
   },
 
   test: {
@@ -18,7 +18,7 @@ var config = {
       name: 'api-agitech'
     },
     port: process.env.PORT || 3000,
-    db: process.env.HEROKU_POSTGRESQL_BRONZE_URL
+    db: 'postgres://postgres:postgres@localhost/api-agitech-test'
   },
 
   production: {
@@ -27,7 +27,7 @@ var config = {
       name: 'api-agitech'
     },
     port: process.env.PORT || 3000,
-    db: process.env.HEROKU_POSTGRESQL_BRONZE_URL
+    db: 'postgres://postgres:postgres@localhost/api-agitech-production'
   }
 };
 
