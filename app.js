@@ -7,7 +7,7 @@ import activity from './app/routes/activity';
 import task from './app/routes/task';
 import teen from './app/routes/teen';
 import card from './app/routes/card';
-import resonposible from './app/routess/responsible';
+import responsible from './app/routes/responsible';
 
 
 const app = express();
