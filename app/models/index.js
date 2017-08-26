@@ -1,8 +1,8 @@
-var fs = require('fs'),
-  path = require('path'),
-  Sequelize = require('sequelize'),
-  config = require('../config'),
-  db = {};
+import fs from 'fs';
+import path from 'path';
+import Sequelize from 'sequelize';
+import config from './../../config';
+let db = {};
 
 var sequelize = new Sequelize(config.db, {
   dialect: 'postgres'
@@ -24,6 +24,8 @@ fs.readdirSync(__dirname).filter(function (file) {
 // db.sequelize = sequelize;
 // db.Sequelize = Sequelize;
 
-sequelize.sync({ force: false })
+sequelize.sync({
+  force: false
+})
 
 export default db;

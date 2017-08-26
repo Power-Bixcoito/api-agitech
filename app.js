@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import genero from './app/routes/genero';
+import activity from './app/routes/activity';
 
 const app = express();
 
@@ -15,6 +15,6 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 //rotas
-app.route(genero(app))
+app.route(activity(app))
 
 export default app;
