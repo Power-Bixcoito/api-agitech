@@ -14,6 +14,9 @@
      nickname: {
        type: DataType.STRING
      },
+     score: {
+       type: DataType.INTEGER
+     },
      gender: {
        type: DataType.CHAR
      },

@@ -1,6 +1,6 @@
 export default (sequelize, DataType) => {
   const Teen = sequelize.import('./teen');
-  const Activity = sequelize.import('./activity');
+  //const Activity = sequelize.import('./activity');
   const Responsible = sequelize.import('./responsible');
   const Task = sequelize.define('task', {
     title: {
@@ -8,6 +8,9 @@ export default (sequelize, DataType) => {
     },
     description: {
       type: DataType.STRING
+    },
+    completed: {
+      type: DataType.BOOLEAN
     },
     startedAt: {
       type: DataType.DATE
@@ -20,9 +23,13 @@ export default (sequelize, DataType) => {
     }
   })
 
-  Task.belongsTo(Activity, {
-    as: 'activity'
-  }); // Add Activity to Task using activityId column
+  Task.associate = models => {
+    Task.belongsTo(models.activity);
+  }
+
+  // Task.belongsTo(Activity, {
+  //   as: 'activity'
+  // }); // Add Activity to Task using activityId column
 
   Task.belongsTo(Responsible, {
     as: 'responsible'
