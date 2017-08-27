@@ -13,13 +13,13 @@ export default (route) => {
     })
 
     route.post('/responsibles', (req, res) => {
-        DB.card.create({
+        DB.responsible.create({
             name: req.body.name,
             password: req.body.password,
             email: req.body.email
         }).then(() => {
-            res.send().status(201);
-        });
+            res.status(201).send();
+        }).catch(error => res.status(400).send(error));
     })
 
     return route;

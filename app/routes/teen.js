@@ -2,24 +2,24 @@ import DB from '../models';
 
 export default (route) => {
     route.get('/teens', (req, res) => {
-        DB.activity.findAll().then(teens => res.json(teens))
+        DB.teen.findAll().then(teens => res.json(teens))
     })
     route.get('/teens/id/:id', (req, res) => {
-        DB.activity.findAll({
+        DB.teen.findAll({
             where: {
                 id: req.params.id
             }
         }).then(teens => res.json(teens))
     })
     route.get('/teens/responsible/:responsibleId', (req, res) => {
-        DB.activity.findAll({
+        DB.teen.findAll({
             where: {
                 responsibleId: req.params.responsibleId
             }
         }).then(teens => res.json(teens))
     })
     route.get('/teens/card/:cardId', (req, res) => {
-        DB.activity.findAll({
+        DB.teen.findAll({
             where: {
                 cardId: req.params.cardId
             }
@@ -27,7 +27,7 @@ export default (route) => {
     })
 
     route.post('/teens', (req, res) => {
-        DB.card.create({
+        DB.teen.create({
             name: req.body.name,
             email: req.body.email.toLowerCase(),
             nickname: req.body.nickname,
@@ -38,8 +38,8 @@ export default (route) => {
             cardId: req.body.cardId,
             responsibleId: req.body.responsibleId
         }).then(() => {
-            res.send().status(201);
-        });
+            res.status(201).send();
+        }).catch(error => res.status(400).send(error));
     })
 
     return route;

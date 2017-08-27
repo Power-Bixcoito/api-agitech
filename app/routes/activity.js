@@ -43,8 +43,8 @@ export default (route) => {
             teenId: req.body.teenId,
             responsibleId: req.body.responsibleId,
         }).then(() => {
-            res.send().status(201);
-        });
+            res.status(201).send();
+        }).catch(error => res.status(400).send(error));
     })
 
     return route;

@@ -34,7 +34,7 @@ export default (route) => {
     })
 
     route.post('/tasks', (req, res) => {
-        DB.card.create({
+        DB.task.create({
             title: req.body.title,
             description: req.body.description,
             completed: req.body.completed,
@@ -44,8 +44,8 @@ export default (route) => {
             responsibleId: req.body.responsibleId,
             teenId: req.body.teenId,
         }).then(() => {
-            res.send().status(201);
-        });
+            res.status(201).send();
+        }).catch(error => res.status(400).send(error));
     })
 
     return route;
