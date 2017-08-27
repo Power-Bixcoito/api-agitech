@@ -8,6 +8,14 @@ export default (route) => {
         DB.responsible.findAll({
             where: {
                 id: req.params.id
+            }
+        }).then(responsibles => res.json(responsibles))
+    })
+
+    route.get('/responsibles/:id/teens', (req, res) => {
+        DB.responsible.findAll({
+            where: {
+                id: req.params.id
             },
             include: [{
                 model: DB.teen

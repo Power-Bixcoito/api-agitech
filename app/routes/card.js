@@ -4,7 +4,7 @@ export default (route) => {
     route.get('/cards', (req, res) => {
         DB.card.findAll().then(cards => res.json(cards))
     })
-    route.get('/cards/id/:id', (req, res) => {
+    route.get('/cards/:id', (req, res) => {
         DB.card.findAll({
             where: {
                 id: req.params.id

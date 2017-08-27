@@ -4,7 +4,7 @@ export default (route) => {
     route.get('/tasks', (req, res) => {
         DB.task.findAll().then(tasks => res.json(tasks))
     })
-    route.get('/tasks/id/:id', (req, res) => {
+    route.get('/tasks/:id', (req, res) => {
         DB.task.findAll({
             where: {
                 id: req.params.id

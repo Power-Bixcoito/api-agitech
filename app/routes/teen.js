@@ -4,7 +4,7 @@ export default (route) => {
     route.get('/teens', (req, res) => {
         DB.teen.findAll().then(teens => res.json(teens))
     })
-    route.get('/teens/id/:id', (req, res) => {
+    route.get('/teens/:id', (req, res) => {
         DB.teen.findAll({
             where: {
                 id: req.params.id
