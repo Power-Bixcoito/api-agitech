@@ -14,5 +14,9 @@ export default (sequelize, DataType) => {
     }
   })
 
+  Responsible.associate = models => {
+    Responsible.hasMany(models.teen);
+  }
+
   return Responsible;
 }

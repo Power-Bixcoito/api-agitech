@@ -15,14 +15,6 @@ export default (sequelize, DataType) => {
         endedAt: {
             type: DataType.DATE
         }
-    }, {
-        classMethods: {
-            associate: function (models) {
-                Activity.hasMany(models.task, {
-                    as: 'tasks'
-                })
-            }
-        }
     });
 
     Activity.associate = models => {
