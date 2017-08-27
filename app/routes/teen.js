@@ -6,10 +6,29 @@ export default (route) => {
             where: {
                 id: req.params.id
             },
-            attributes:['name', 'email','nickname','score','gender','birthday','responsibleId','cardId'],
+            attributes: ['name', 'email', 'nickname', 'score', 'gender', 'birthday', 'responsibleId', 'cardId'],
             include: [{
                 model: DB.card
             }]
+        }).then(teens => res.json(teens || {}))
+    })
+
+    route.get('/teens/:id/activities', (req, res) => {
+        DB.activity.findAll({
+            where: {
+                teenId: req.params.id
+            },
+            include: [{
+                model: DB.task
+            }]
+        }).then(teens => res.json(teens || {}))
+    })
+
+    route.get('/teens/:id/tasks', (req, res) => {
+        DB.task.findAll({
+            where: {
+                teenId: req.params.id
+            }
         }).then(teens => res.json(teens || {}))
     })
 
