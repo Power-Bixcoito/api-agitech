@@ -25,7 +25,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 sequelize.sync({
-    force: true
+    force: false
 })
 
 export default db;
