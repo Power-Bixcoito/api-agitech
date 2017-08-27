@@ -30,7 +30,7 @@ export default (sequelize, DataType) => {
             }
         },
         validDate: {
-            type: DataType.DATE,
+            type: DataType.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true

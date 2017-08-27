@@ -38,6 +38,13 @@
          notEmpty: true
        }
      },
+     point: {
+       type: DataType.INTEGER,
+       allowNull: false,
+       validate: {
+         notEmpty: true
+       }
+     },
      gender: {
        type: DataType.CHAR,
        allowNull: false,

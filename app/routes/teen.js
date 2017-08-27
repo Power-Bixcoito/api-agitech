@@ -38,6 +38,7 @@ export default (route) => {
             email: req.body.email.toLowerCase(),
             nickname: req.body.nickname,
             score: req.body.score,
+            point: req.body.point,
             gender: req.body.gender,
             password: req.body.password,
             birthday: req.body.birthday,
