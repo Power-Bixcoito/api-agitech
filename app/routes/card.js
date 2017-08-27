@@ -15,7 +15,11 @@ export default (route) => {
     route.post('/cards', (req, res) => {
         DB.card.create({
             cardNumber: req.body.cardNumber,
-            responsibleId: req.body.responsibleId
+            responsibleId: req.body.responsibleId,
+            proxy: req.body.proxy,
+            cvv: req.body.cvv,
+            pin: req.body.pin,
+            validDate: req.body.validDate
         }).then(() => {
             res.status(201).send();
         }).catch(error => res.status(400).send(error));
