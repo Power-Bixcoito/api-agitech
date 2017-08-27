@@ -5,14 +5,14 @@ import config from './../../config';
 let db = {};
 
 var sequelize = new Sequelize(config.db, {
-  dialect: 'postgres'
+    dialect: 'postgres'
 });
 
-fs.readdirSync(__dirname).filter(function (file) {
-  return (file.indexOf('.') !== 0) && (file !== 'index.js');
-}).forEach(function (file) {
-  var model = sequelize['import'](path.join(__dirname, file));
-  db[model.name] = model;
+fs.readdirSync(__dirname).filter(function(file) {
+    return (file.indexOf('.') !== 0) && (file !== 'index.js');
+}).forEach(function(file) {
+    var model = sequelize['import'](path.join(__dirname, file));
+    db[model.name] = model;
 });
 
 Object.keys(db).forEach(function (modelName) {
@@ -25,7 +25,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 sequelize.sync({
-  force: false
+    force: true
 })
 
 export default db;
