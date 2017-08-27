@@ -13,14 +13,14 @@ export default (route) => {
     })
 
     route.get('/responsibles/:id/teens', (req, res) => {
-        DB.responsible.findAll({
+        DB.responsible.findOne({
             where: {
                 id: req.params.id
             },
             include: [{
                 model: DB.teen
             }]
-        }).then(responsibles => res.json(responsibles))
+        }).then(responsibles => res.json(responsibles || {}))
     })
 
     route.post('/responsibles', (req, res) => {
