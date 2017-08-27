@@ -13,8 +13,12 @@ export default (route) => {
         DB.teen.findAll({
             where: {
                 responsibleId: req.params.id
-            }
-        }).then(teens => res.json(teens || []))
+            },
+            attributes:['name', 'email','nickname','score','gender','birthday','responsibleId','cardId']
+        }).then(teens => {
+            delete teens.password;
+            res.json(teens || [])
+        })
     })
 
     route.get('/responsibles/:id/activities', (req, res) => {
@@ -38,8 +42,9 @@ export default (route) => {
             name: req.body.name,
             password: req.body.password,
             email: req.body.email
-        }).then(() => {
-            res.status(201).send();
+        }).then((responsible) => {
+            delete responsible.password;
+            res.status(201).send(responsible);
         }).catch(error => res.status(400).send(error));
     })
 

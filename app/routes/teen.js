@@ -6,6 +6,7 @@ export default (route) => {
             where: {
                 id: req.params.id
             },
+            attributes:['name', 'email','nickname','score','gender','birthday','responsibleId','cardId'],
             include: [{
                 model: DB.card
             }]
@@ -23,8 +24,9 @@ export default (route) => {
             birthday: req.body.birthday,
             cardId: req.body.cardId,
             responsibleId: req.body.responsibleId
-        }).then(() => {
-            res.status(201).send();
+        }).then((teen) => {
+            delete teen.password;
+            res.status(201).send(teen);
         }).catch(error => res.status(400).send(error));
     })
 

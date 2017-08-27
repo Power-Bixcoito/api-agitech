@@ -34,8 +34,8 @@ export default (route) => {
             deadline: req.body.deadline,
             teenId: req.body.teenId,
             responsibleId: req.body.responsibleId,
-        }).then(() => {
-            res.status(201).send();
+        }).then((activity) => {
+            res.status(201).send(activity);
         }).catch(error => res.status(400).send(error));
     })
 

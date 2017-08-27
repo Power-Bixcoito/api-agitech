@@ -34,14 +34,14 @@ export default (route) => {
         DB.task.create({
             title: req.body.title,
             description: req.body.description,
-            completed: req.body.completed,
+            completed: req.body.completed || false,
             startedAt: req.body.startedAt,
             deadline: req.body.deadline,
             reward: req.body.reward,
             responsibleId: req.body.responsibleId,
             teenId: req.body.teenId,
-        }).then(() => {
-            res.status(201).send();
+        }).then((task) => {
+            res.status(201).send(task);
         }).catch(error => res.status(400).send(error));
     })
 

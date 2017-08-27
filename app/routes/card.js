@@ -17,8 +17,8 @@ export default (route) => {
             cvv: req.body.cvv,
             pin: req.body.pin,
             validDate: req.body.validDate
-        }).then(() => {
-            res.status(201).send();
+        }).then((card) => {
+            res.status(201).send(card);
         }).catch(error => res.status(400).send(error));
     })
 
