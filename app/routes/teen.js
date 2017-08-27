@@ -6,7 +6,7 @@ export default (route) => {
             where: {
                 id: req.params.id
             },
-            attributes: ['name', 'email', 'nickname', 'score', 'gender', 'birthday', 'responsibleId', 'cardId'],
+            attributes: ['name', 'email', 'nickname', 'point', 'score', 'gender', 'birthday', 'responsibleId', 'cardId'],
             include: [{
                 model: DB.card
             }]
