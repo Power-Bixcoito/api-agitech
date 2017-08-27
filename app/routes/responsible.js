@@ -14,7 +14,7 @@ export default (route) => {
             where: {
                 responsibleId: req.params.id
             },
-            attributes:['name', 'email','nickname','score','gender','birthday','responsibleId','cardId']
+            attributes:['id','name', 'email','nickname','score','gender','birthday','responsibleId','cardId']
         }).then(teens => {
             delete teens.password;
             res.json(teens || [])
