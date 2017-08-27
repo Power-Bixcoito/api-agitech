@@ -39,6 +39,7 @@ export default (route) => {
             deadline: req.body.deadline,
             reward: req.body.reward,
             responsibleId: req.body.responsibleId,
+            activityId: req.body.activityId,
             teenId: req.body.teenId,
         }).then((task) => {
             res.status(201).send(task);
