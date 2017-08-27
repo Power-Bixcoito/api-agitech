@@ -39,11 +39,11 @@ export default (route) => {
             title: req.body.title,
             description: req.body.description,
             startedAt: req.body.startedAt,
-            endedAt: req.body.endedAt,
+            deadline: req.body.deadline,
             teenId: req.body.teenId,
             responsibleId: req.body.responsibleId,
         }).then(() => {
-            res.send().status(202);
+            res.send().status(201);
         });
     })
 
