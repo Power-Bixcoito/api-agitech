@@ -32,6 +32,22 @@ export default (route) => {
         }).then(teens => res.json(teens || {}))
     })
 
+    route.put('/teens/:id', (req, res) => {
+        DB.teen.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (teen) {
+            if (teen) {
+                teen.updateAttributes({
+                    point: req.body.point
+                }).then(function (teen) {
+                    res.send(teen);
+                });
+            }
+        });
+    })
+
     route.post('/teens', (req, res) => {
         DB.teen.create({
             name: req.body.name,
