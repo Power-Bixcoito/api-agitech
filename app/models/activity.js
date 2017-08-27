@@ -4,10 +4,18 @@ export default (sequelize, DataType) => {
     const Responsible = sequelize.import('./responsible');
     const Activity = sequelize.define('activity', {
         title: {
-            type: DataType.STRING
+            type: DataType.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
         },
         description: {
-            type: DataType.STRING
+            type: DataType.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
         },
         startedAt: {
             type: DataType.DATE
@@ -17,7 +25,7 @@ export default (sequelize, DataType) => {
         }
     }, {
         classMethods: {
-            associate: function (models) {
+            associate: function(models) {
                 Activity.hasMany(models.task, {
                     as: 'tasks'
                 })
