@@ -30,7 +30,7 @@ export default (route) => {
     })
 
     route.get('/responsibles/:id/tasks', (req, res) => {
-        DB.task.findOne({
+        DB.task.findAll({
             where: {
                 responsibleId: req.params.id
             }
