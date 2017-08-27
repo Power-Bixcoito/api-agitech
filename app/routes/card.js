@@ -1,15 +1,12 @@
 import DB from '../models';
 
 export default (route) => {
-    route.get('/cards', (req, res) => {
-        DB.card.findAll().then(cards => res.json(cards))
-    })
     route.get('/cards/:id', (req, res) => {
-        DB.card.findAll({
+        DB.card.findOne({
             where: {
                 id: req.params.id
             }
-        }).then(cards => res.json(cards))
+        }).then(cards => res.json(cards || {}))
     })
 
     route.post('/cards', (req, res) => {

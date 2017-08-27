@@ -1,23 +1,15 @@
 import DB from '../models';
 
 export default (route) => {
-    route.get('/activities', (req, res) => {
-        DB.activity.findAll({
-            include: [{
-                model: DB.task,
-                as: 'tasks'
-            }]
-        }).then(activities => res.json(activities))
-    })
     route.get('/activities/:id', (req, res) => {
-        DB.activity.findAll({
+        DB.activity.findOne({
             where: {
                 id: req.params.id
             },
             include: [{
                 model: DB.task
             }]
-        }).then(activities => res.json(activities))
+        }).then(activities => res.json(activities || {}))
     })
     route.get('/activities/responsible/:responsibleId', (req, res) => {
         DB.activity.findAll({

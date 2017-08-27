@@ -1,29 +1,15 @@
 import DB from '../models';
 
 export default (route) => {
-    route.get('/teens', (req, res) => {
-        DB.teen.findAll().then(teens => res.json(teens))
-    })
     route.get('/teens/:id', (req, res) => {
-        DB.teen.findAll({
+        DB.teen.findOne({
             where: {
                 id: req.params.id
-            }
-        }).then(teens => res.json(teens))
-    })
-    route.get('/teens/responsible/:responsibleId', (req, res) => {
-        DB.teen.findAll({
-            where: {
-                responsibleId: req.params.responsibleId
-            }
-        }).then(teens => res.json(teens))
-    })
-    route.get('/teens/card/:cardId', (req, res) => {
-        DB.teen.findAll({
-            where: {
-                cardId: req.params.cardId
-            }
-        }).then(teens => res.json(teens))
+            },
+            include: [{
+                model: DB.card
+            }]
+        }).then(teens => res.json(teens || {}))
     })
 
     route.post('/teens', (req, res) => {

@@ -1,15 +1,12 @@
 import DB from '../models';
 
 export default (route) => {
-    route.get('/tasks', (req, res) => {
-        DB.task.findAll().then(tasks => res.json(tasks))
-    })
     route.get('/tasks/:id', (req, res) => {
-        DB.task.findAll({
+        DB.task.findOne({
             where: {
                 id: req.params.id
             }
-        }).then(tasks => res.json(tasks))
+        }).then(tasks => res.json(tasks || {}))
     })
     route.get('/tasks/responsible/:responsibleId', (req, res) => {
         DB.task.findAll({

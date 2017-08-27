@@ -1,48 +1,36 @@
 import DB from '../models';
 
 export default (route) => {
-    route.get('/responsibles', (req, res) => {
-        DB.responsible.findAll().then(responsibles => res.json(responsibles))
-    })
     route.get('/responsibles/:id', (req, res) => {
-        DB.responsible.findAll({
+        DB.responsible.findOne({
             where: {
                 id: req.params.id
             }
-        }).then(responsibles => res.json(responsibles))
+        }).then(responsibles => res.json(responsibles || {}))
     })
 
     route.get('/responsibles/:id/teens', (req, res) => {
-        DB.responsible.findOne({
+        DB.teen.findAll({
             where: {
-                id: req.params.id
-            },
-            include: [{
-                model: DB.teen
-            }]
-        }).then(responsibles => res.json(responsibles || {}))
+                responsibleId: req.params.id
+            }
+        }).then(teens => res.json(teens || []))
     })
 
     route.get('/responsibles/:id/activities', (req, res) => {
-        DB.responsible.findOne({
+        DB.activity.findAll({
             where: {
-                id: req.params.id
-            },
-            include: [{
-                model: DB.activity
-            }]
-        }).then(responsibles => res.json(responsibles || {}))
+                responsibleId: req.params.id
+            }
+        }).then(activities => res.json(activities || []))
     })
 
     route.get('/responsibles/:id/tasks', (req, res) => {
-        DB.responsible.findOne({
+        DB.task.findOne({
             where: {
-                id: req.params.id
-            },
-            include: [{
-                model: DB.task
-            }]
-        }).then(responsibles => res.json(responsibles || {}))
+                responsibleId: req.params.id
+            }
+        }).then(tasks => res.json(tasks || []))
     })
 
     route.post('/responsibles', (req, res) => {
