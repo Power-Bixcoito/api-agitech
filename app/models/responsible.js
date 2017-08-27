@@ -33,6 +33,8 @@ export default (sequelize, DataType) => {
 
     Responsible.associate = models => {
         Responsible.hasMany(models.teen);
+        Responsible.hasMany(models.task);
+        Responsible.hasMany(models.activity);
     }
 
     return Responsible;

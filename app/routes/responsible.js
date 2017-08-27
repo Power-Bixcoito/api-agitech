@@ -23,6 +23,28 @@ export default (route) => {
         }).then(responsibles => res.json(responsibles || {}))
     })
 
+    route.get('/responsibles/:id/activities', (req, res) => {
+        DB.responsible.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [{
+                model: DB.activity
+            }]
+        }).then(responsibles => res.json(responsibles || {}))
+    })
+
+    route.get('/responsibles/:id/tasks', (req, res) => {
+        DB.responsible.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [{
+                model: DB.task
+            }]
+        }).then(responsibles => res.json(responsibles || {}))
+    })
+
     route.post('/responsibles', (req, res) => {
         DB.responsible.create({
             name: req.body.name,
