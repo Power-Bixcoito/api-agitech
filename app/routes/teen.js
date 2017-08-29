@@ -1,31 +1,40 @@
-import DB from '../models';
-
 export default (route) => {
+    route.get('/teens', (req, res) => {
+        req.$models.teen.findAll({
+                attributes: ['name', 'email', 'nickname', 'point', 'score', 'gender', 'birthday', 'responsibleId', 'cardId'],
+                include: [{
+                    model: req.$models.card
+                }]
+            }).then(teens => res.json(teens || {}))
+            .catch(error => res.status(400).send(error));
+    })
     route.get('/teens/:id', (req, res) => {
-        DB.teen.findOne({
-            where: {
-                id: req.params.id
-            },
-            attributes: ['name', 'email', 'nickname', 'point', 'score', 'gender', 'birthday', 'responsibleId', 'cardId'],
-            include: [{
-                model: DB.card
-            }]
-        }).then(teens => res.json(teens || {}))
+        req.$models.teen.findOne({
+                where: {
+                    id: req.params.id
+                },
+                attributes: ['name', 'email', 'nickname', 'point', 'score', 'gender', 'birthday', 'responsibleId', 'cardId'],
+                include: [{
+                    model: req.$models.card
+                }]
+            }).then(teens => res.json(teens || {}))
+            .catch(error => res.status(400).send(error));
     })
 
     route.get('/teens/:id/activities', (req, res) => {
-        DB.activity.findAll({
-            where: {
-                teenId: req.params.id
-            },
-            include: [{
-                model: DB.task
-            }]
-        }).then(teens => res.json(teens || {}))
+        req.$models.activity.findAll({
+                where: {
+                    teenId: req.params.id
+                },
+                include: [{
+                    model: req.$models.task
+                }]
+            }).then(teens => res.json(teens || {}))
+            .catch(error => res.status(400).send(error));
     })
 
     route.get('/teens/:id/tasks', (req, res) => {
-        DB.task.findAll({
+        req.$models.task.findAll({
             where: {
                 teenId: req.params.id
             }
@@ -33,23 +42,23 @@ export default (route) => {
     })
 
     route.put('/teens/:id', (req, res) => {
-        DB.teen.findOne({
+        req.$models.teen.findOne({
             where: {
                 id: req.params.id
             }
-        }).then(function (teen) {
+        }).then((teen) => {
             if (teen) {
                 teen.updateAttributes({
                     point: req.body.point
-                }).then(function (teen) {
+                }).then((teen) => {
                     res.send(teen);
-                });
+                }).catch(error => res.status(400).send(error));
             }
-        });
+        }).catch(error => res.status(400).send(error));
     })
 
     route.post('/teens', (req, res) => {
-        DB.teen.create({
+        req.$models.teen.create({
             name: req.body.name,
             email: req.body.email.toLowerCase(),
             nickname: req.body.nickname,

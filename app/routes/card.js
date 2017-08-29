@@ -1,16 +1,20 @@
-import DB from '../models';
-
 export default (route) => {
+    route.get('/cards', (req, res) => {
+        req.$models.card.findAll()
+            .then(cards => res.json(cards || {}))
+            .catch(error => res.status(400).send(error));
+    })
     route.get('/cards/:id', (req, res) => {
-        DB.card.findOne({
-            where: {
-                id: req.params.id
-            }
-        }).then(cards => res.json(cards || {}))
+        req.$models.card.findOne({
+                where: {
+                    id: req.params.id
+                }
+            }).then(cards => res.json(cards || {}))
+            .catch(error => res.status(400).send(error));
     })
 
     route.post('/cards', (req, res) => {
-        DB.card.create({
+        req.$models.card.create({
             cardNumber: req.body.cardNumber,
             responsibleId: req.body.responsibleId,
             proxy: req.body.proxy,

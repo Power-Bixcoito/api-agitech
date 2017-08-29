@@ -1,33 +1,42 @@
-import DB from '../models';
-
 export default (route) => {
+    route.get('/activities', (req, res) => {
+        req.$models.activity.findAll({
+                include: [{
+                    model: req.$models.task
+                }]
+            }).then(activities => res.json(activities || {}))
+            .catch(error => res.status(400).send(error));
+    })
     route.get('/activities/:id', (req, res) => {
-        DB.activity.findOne({
-            where: {
-                id: req.params.id
-            },
-            include: [{
-                model: DB.task
-            }]
-        }).then(activities => res.json(activities || {}))
+        req.$models.activity.findOne({
+                where: {
+                    id: req.params.id
+                },
+                include: [{
+                    model: req.$models.task
+                }]
+            }).then(activities => res.json(activities || {}))
+            .catch(error => res.status(400).send(error));
     })
     route.get('/activities/responsible/:responsibleId', (req, res) => {
-        DB.activity.findAll({
-            where: {
-                responsibleId: req.params.responsibleId
-            }
-        }).then(activities => res.json(activities))
+        req.$models.activity.findAll({
+                where: {
+                    responsibleId: req.params.responsibleId
+                }
+            }).then(activities => res.json(activities))
+            .catch(error => res.status(400).send(error));
     })
     route.get('/activities/teen/:teenId', (req, res) => {
-        DB.activity.findAll({
-            where: {
-                teenId: req.params.teenId
-            }
-        }).then(activities => res.json(activities))
+        req.$models.activity.findAll({
+                where: {
+                    teenId: req.params.teenId
+                }
+            }).then(activities => res.json(activities))
+            .catch(error => res.status(400).send(error));
     })
 
     route.post('/activities', (req, res) => {
-        DB.activity.create({
+        req.$models.activity.create({
             title: req.body.title,
             description: req.body.description,
             startedAt: req.body.startedAt,
